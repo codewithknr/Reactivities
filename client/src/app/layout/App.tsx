@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import './App.css'
-import { List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Box, Container, CssBaseline} from '@mui/material';
 import axios from 'axios';
+import NavBar from './NavBar';
+import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -17,17 +18,13 @@ function App() {
   }, [])
 
   return (
-    <>
-      <Typography variant='h3'>Reactivities</Typography>
-      <List>
-        {
-          activities.map((activity) => (
-            <ListItem key={activity.id}>
-              <ListItemText>{activity.title}</ListItemText></ListItem>
-          ))
-        }
-      </List>
-    </>
+    <Box sx={{bgColor:'#eeeeee'}}>
+      <CssBaseline></CssBaseline>
+      <NavBar />
+      <Container maxWidth="xl" sx={{ mt: 3 }}>
+        <ActivityDashboard activities={activities}></ActivityDashboard>
+      </Container>
+    </Box>
   )
 }
 
